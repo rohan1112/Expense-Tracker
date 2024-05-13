@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ExpenseTrackerApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ExpenseTrackerApp.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg  bg-light navbar-light">
+            <button class="navbar-toggler"
+                    type="button"
+                    data-mdb-toggle="collapse"
+                    data-mdb-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="container d-flex justify-content-center">
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center mb-3">
+                        <a class="navbar-brand" href="#">
+                            <img id="MDB-logo"
+                                 src="https://media.licdn.com/dms/image/D5612AQGplp7JKG6Iiw/article-cover_image-shrink_720_1280/0/1673950361361?e=2147483647&v=beta&t=NxzErCoXqQ-xwkHJZZkKGKYNA21hJh3oNMUJzNKQr9M"
+                                 alt="MDB Logo"
+                                 draggable="false"
+                                 height="100" />
+                        </a>
+                    </div>
+                    <div class="col-12 d-flex justify-content-center">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav align-items-center mx-auto">
+                                @if(Context.Session.GetInt32("userId")!=null){
+                                <li class="nav-item">
+                                    <a class="nav-link mx-2" asp-controller="User" asp-action="Logout"><i class="fas fa-plus-circle pe-2"></i>Logout</a>
+                                </li>
+                                }else{
+
+                                <li class="nav-item">
+                                    <a class="nav-link mx-2" asp-controller="User" asp-action="Login"><i class="fas fa-plus-circle pe-2"></i>Login</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mx-2" asp-controller="User" asp-action="SignUp"><i class="fas fa-bell pe-2"></i>Sign Up</a>
+                                </li>
+                                }
+                               
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar -->
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2024 - ExpenseTrackerApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

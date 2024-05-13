@@ -1,0 +1,70 @@
+﻿@model ExpenseTrackerApp.Models.Expense;
+
+@{
+    ViewData["Title"] = "Create";
+}
+@using Microsoft.AspNetCore.Http;
+
+<div class="d-flex justify-content-center">
+    <div class="col-md-6">
+
+
+        <h1 class="text-center">Add Expense</h1>
+
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="UserID" class="control-label"></label>
+                        <input asp-for="UserID" class="form-control" value="@ViewBag.id" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Category" class="control-label"></label>
+                        @* <input asp-for="Category" class="form-control" /> *@
+                        <select asp-for="Category" class="form-control">
+                            <option>Grocery</option>
+                            <option>Entertainment</option>
+                            <option>Clothes</option>
+                            <option>Utilities</option>
+                            <option>Others</option>
+                        </select>
+                        <span asp-validation-for="Category" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Amount" class="control-label"></label>
+                        <input asp-for="Amount" class="form-control" />
+                        <span asp-validation-for="Amount" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Date" class="control-label"></label>
+                        <input asp-for="Date" class="form-control" />
+                        <span asp-validation-for="Date" class="text-danger"></span>
+                    </div>
+                    <div class="form-group pt-2 pb-2">
+                        <input type="submit" value="Create" class="w-100 btn btn-primary" />
+                    </div>
+                    <div>
+                        <a class="w-100 btn btn-danger" asp-action="Index" asp-route-id="@Context.Session.GetInt32("userId")">Back to List</a>
+                    </div>
+                    
+                </form>
+                
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

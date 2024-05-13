@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ExpenseTrackerApp.Models.Expense>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="text-center">Index</h1>
+
+@* <p>
+    <a asp-action="Create">Create New</a>
+</p> *@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RemainingAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RemainingAmount)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.Email)
+            </td>
+            <td>
+
+                <a asp-action="Edit" asp-route-id="@item.ExpenseID"><button class="btn btn-success">Edit</button></a> |
+                    <a asp-action="Details" asp-route-id="@item.ExpenseID"><button class="btn btn-warning">Details</button></a> |
+                    <a asp-action="Delete" asp-route-id="@item.ExpenseID"><button class="btn btn-danger">Delete</button></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+<div class="d-flex justify-content-end gap-5">
+
+<p class="text-md-end">
+    
+    <a asp-action="Create"><button class="w-100 btn btn-info">Add Expense</button></a>
+    
+</p>
+<p class="text-md-end">
+
+    <a asp-controller="Budget" asp-action="Create"><button class="w-100 btn btn-info">Add New Budget</button></a>
+
+</p>
+</div>

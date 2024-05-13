@@ -1,0 +1,19 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<h1>You have error in @ViewBag.Message </h1>
+@* 
+<a asp-action="GoBack"> <button class="btn btn-light" >&larr; Go Back</button></a>
+ *@
+<a> <button class="btn btn-light" id="goBackButton">&larr; Go Back</button></a>
+
+
+<script>
+    document.getElementById("goBackButton").addEventListener("click", function () {
+        window.history.back();
+    });
+</script> 

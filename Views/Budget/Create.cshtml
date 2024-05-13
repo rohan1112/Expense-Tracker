@@ -1,0 +1,74 @@
+﻿@model ExpenseTrackerApp.Models.Budget
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="d-flex justify-content-center">
+    <div class="col-md-6">
+        <h1 class="text-center">Add Budget</h1>
+
+        @* <h4>Budget</h4> *@
+        <hr />
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="UserID" class="control-label"></label>
+                        <input asp-for="UserID" class="form-control" value="@ViewBag.UserID" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Category" class="control-label"></label>
+                        @* <input asp-for="Category" class="form-control" /> *@
+                        <select asp-for="Category" class="form-control">
+                            <option>Grocery</option>
+                            <option>Entertainment</option>
+                            <option>Clothes</option>
+                            <option>Utilities</option>
+                            <option>Others</option>
+                        </select>
+                        <span asp-validation-for="Category" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Amount" class="control-label"></label>
+                        <input asp-for="Amount" class="form-control" />
+                        <span asp-validation-for="Amount" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Month" class="control-label"></label>
+                        <input asp-for="Month" class="form-control" />
+                        <span asp-validation-for="Month" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Year" class="control-label"></label>
+                        <input asp-for="Year" class="form-control" />
+                        <span asp-validation-for="Year" class="text-danger"></span>
+                    </div>
+                    <div class="d-flex pt-2 pb-2 gap-4 justify-content-end">
+
+                        <div class="form-group ">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                        <div>
+                            <a class="w-100 btn btn-danger" asp-action="Index" asp-route-id="Budget">Back to List</a>
+                        </div>
+                        <div>
+                            <a class="w-100 btn btn-secondary" asp-action="Index" asp-route-id="@Context.Session.GetInt32("userId")">Back to Expense</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
